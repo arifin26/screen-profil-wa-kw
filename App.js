@@ -7,14 +7,44 @@
  */
 
 import React from 'react'
-import{Text,View,ImageBackground,StyleSheet,Image,TextInput,TouchableHighlight,TouchableWithoutFeedback,TouchableNativeFeedback,TouchableOpacity,ScrollView}from 'react-native'
+import{Text,View,ImageBackground,StyleSheet,Image,TextInput,TouchableHighlight,TouchableWithoutFeedback,TouchableNativeFeedback,TouchableOpacity,ScrollView,ActivityIndicator,ActivityIndicatorBase}from 'react-native'
 
 
 class App extends React.Component{
   state={
     text:''
   }
-  render(){
+  state={
+    role:true
+}
+
+render(){
+      setTimeout(()=>{
+  this.setState({
+      role:false
+  })
+} ,5000)
+if (this.state.role) {
+  return (
+  <View> 
+  <ImageBackground style={{width: '100%', height: '100%'}} source={require('./test/f0fce7e0-00df-452b-99df-a77638292463.jpeg')}> 
+    <View style={Styles.MainSplash}>
+      <Image
+            source={require('./test/happy.png')}
+            style={Styles.logoSplash}
+      />
+      <ActivityIndicator size='large' />
+      <View style={Styles.copyright.loading} >
+            {/* <Text style={Styles.copyright}>welcome to my profile</Text> */}
+            <Text style = {Styles.loading}>SEBENTAR...!!!</Text>
+      </View>
+    </View>
+   </ImageBackground> 
+  </View>  
+  );
+  
+}
+  
     return(
       
       <View style={{flex:1}} >
@@ -138,9 +168,26 @@ class App extends React.Component{
     position:'absolute',
     width:'100%',
     height:'100%'
+   },
+   MainSplash:{
+    flex:1,
+    justifyContent:'center', 
+    alignItems:'center'
+   },
+   logoSplash:{
+    height:125, 
+    width:125
+   },
+   copyright:{
+     textAlign:'center'
+   },
+   loading:{
+     textAlign:'center'
    }
 
  })
+
+
 
 
 
